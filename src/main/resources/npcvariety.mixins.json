@@ -1,0 +1,30 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.overlordsiii.npcvariety.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MerchantEntityMixin",
+    "VillagerEntityMixin",
+    "VillagerEntityRendererMixin",
+    "WanderingTraderEntityMixin",
+    "WanderingTraderEntityRendererMixin",
+    "ZombieEntityMixin",
+    "ZombieVillagerEntityMixin",
+    "ZombieVillagerEntityRendererMixin",
+    "illager.EvokerEntityMixin",
+    "illager.EvokerEntityRendererMixin",
+    "illager.IllagerEntityMixin",
+    "illager.PillagerEntityMixin",
+    "illager.PillagerEntityRendererMixin",
+    "illager.RavagerEntityMixin",
+    "illager.RavagerEntityRendererMixin",
+    "illager.VindicatorEntityMixin",
+    "illager.VindicatorEntityRendererMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

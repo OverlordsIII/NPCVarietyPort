@@ -1,0 +1,12 @@
+skin1 +60b +35s
+skin2 +40b +20s
+skin3 +25b +10s
+
+skin4 - default
+
+skin5 +10s -30b
+skin6 +20s -60b
+skin7 +25s -90b
+skin8 +30s -127b
+
+s * 3 for illagers
