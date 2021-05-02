@@ -43,7 +43,9 @@ public abstract class WanderingTraderEntityMixin extends MerchantEntity implemen
 
 	@Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
 	private void readRobeIndex(CompoundTag tag, CallbackInfo ci) {
-		this.dataTracker.set(robeIndex, tag.getInt("robeIndex"));
+		if (tag.contains("robeIndex")) {
+			this.dataTracker.set(robeIndex, tag.getInt("robeIndex"));
+		}
 	}
 
 

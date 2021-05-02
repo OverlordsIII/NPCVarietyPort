@@ -60,8 +60,12 @@ public abstract class EvokerEntityMixin extends SpellcastingIllagerEntity implem
 
 	@Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
 	public void readCustomDataFromTag(CompoundTag tag, CallbackInfo ci) {
-		this.dataTracker.set(shoeIndex, tag.getInt("shoeIndex"));
-		this.dataTracker.set(headIndex, tag.getInt("headIndex"));
+		if (tag.contains("shoeIndex")) {
+			this.dataTracker.set(shoeIndex, tag.getInt("shoeIndex"));
+		}
+		if (tag.contains("headIndex")) {
+			this.dataTracker.set(headIndex, tag.getInt("headIndex"));
+		}
 	}
 
 	@Inject(method = "writeCustomDataToTag", at = @At("HEAD"))

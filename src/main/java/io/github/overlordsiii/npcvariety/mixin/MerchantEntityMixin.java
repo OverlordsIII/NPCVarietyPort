@@ -71,8 +71,12 @@ public abstract class MerchantEntityMixin extends PassiveEntity implements SkinV
 
 	@Inject(method = "readCustomDataFromTag", at = @At("TAIL"))
 	private void readSkinDataFromTag(CompoundTag tag, CallbackInfo ci) {
-		setSkinIndex(tag.getInt("skinIndex"));
-		setEyeIndex(tag.getInt("eyeIndex"));
+		if (tag.contains("skinIndex")) {
+			setSkinIndex(tag.getInt("skinIndex"));
+		}
+		if (tag.contains("eyeIndex")) {
+			setEyeIndex(tag.getInt("eyeIndex"));
+		}
 	}
 
 	@Override

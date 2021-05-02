@@ -65,8 +65,12 @@ public abstract class RavagerEntityMixin extends RaiderEntity implements SkinVar
 
 	@Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
 	private void writeIndex(CompoundTag tag, CallbackInfo ci) {
-		tag.putInt("skinIndex", this.dataTracker.get(skinIndex));
-		tag.putInt("eyeIndex", this.dataTracker.get(eyeIndex));
+		if (tag.contains("skinIndex")) {
+			tag.putInt("skinIndex", this.dataTracker.get(skinIndex));
+		}
+		if (tag.contains("eyeIndex")) {
+			tag.putInt("eyeIndex", this.dataTracker.get(eyeIndex));
+		}
 	}
 
 	@Override

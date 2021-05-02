@@ -51,8 +51,12 @@ public abstract class IllagerEntityMixin extends RaiderEntity implements SkinVar
 	@Override
 	public void readCustomDataFromTag(CompoundTag tag) {
 		super.readCustomDataFromTag(tag);
-		setEyeIndex(tag.getInt("eyeIndex"));
-		setSkinIndex(tag.getInt("skinIndex"));
+		if (tag.contains("eyeIndex")) {
+			setEyeIndex(tag.getInt("eyeIndex"));
+		}
+		if (tag.contains("skinIndex")) {
+			setSkinIndex(tag.getInt("skinIndex"));
+		}
 	}
 
 	private int getRandomEyeIndex() {

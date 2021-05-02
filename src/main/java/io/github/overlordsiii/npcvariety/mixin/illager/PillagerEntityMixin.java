@@ -55,7 +55,9 @@ public abstract class PillagerEntityMixin extends IllagerEntity implements Illag
 
 	@Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
 	private void writeHeadIndex(CompoundTag tag, CallbackInfo ci) {
-		tag.putInt("headIndex", this.dataTracker.get(headIndex));
+		if (tag.contains("headIndex")) {
+			tag.putInt("headIndex", this.dataTracker.get(headIndex));
+		}
 	}
 
 

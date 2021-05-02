@@ -56,8 +56,12 @@ public abstract class VindicatorEntityMixin extends IllagerEntity implements Ill
 
 	@Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
 	private void writeIndexes(CompoundTag tag, CallbackInfo ci) {
-		tag.putInt("headIndex", this.dataTracker.get(headIndex));
-		tag.putInt("shoeIndex", this.dataTracker.get(shoeIndex));
+		if (tag.contains("headIndex")) {
+			tag.putInt("headIndex", this.dataTracker.get(headIndex));
+		}
+		if (tag.contains("shoeIndex")) {
+			tag.putInt("shoeIndex", this.dataTracker.get(shoeIndex));
+		}
 	}
 
 	private int getEyePatchIndex() {
