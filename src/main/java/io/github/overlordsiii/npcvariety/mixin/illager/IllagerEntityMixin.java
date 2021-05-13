@@ -41,6 +41,7 @@ public abstract class IllagerEntityMixin extends RaiderEntity implements SkinVar
 		this.dataTracker.startTracking(SKIN_INDEX, this.random.nextInt(8));
 	}
 
+
 	@Override
 	public void writeCustomDataToTag(CompoundTag tag) {
 		super.writeCustomDataToTag(tag);
