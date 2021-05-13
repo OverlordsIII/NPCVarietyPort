@@ -58,14 +58,28 @@ public abstract class VillagerEntityMixin extends MerchantEntity {
 		if (spawnReason == SpawnReason.STRUCTURE) {
 			BiomeSpawnRate rate = getRateFromType(this.getVillagerData());
 
-			Rarity<Integer> numbers = rate.getRandom((VillagerEntity) (Object) this, this.random);
+			Rarity<Integer> numbers = getRandomRarity(rate, (VillagerEntity) (Object) this);
 
-			if (numbers != null) {
-				((SkinVariantManager)this).setSkinIndex(numbers.getValues().get(this.random.nextInt(numbers.getValues().size())));
-			} else {
-				System.out.println("Generating random skin index for structure gen");
-			}
+			int index = this.random.nextInt(numbers.getValues().size());
+
+			int val = numbers.getValues().get(index);
+
+			((SkinVariantManager)this).setSkinIndex(val);
 		}
+	}
+
+	private static Rarity<Integer> getRandomRarity(BiomeSpawnRate rate, VillagerEntity entity) {
+		Rarity<Integer> rarity = rate.getRandom(entity, entity.getRandom());
+
+		if (rarity == null) {
+			return getRandomRarity(rate, entity);
+		}
+
+		if (rarity.getValues().isEmpty()) {
+			return getRandomRarity(rate, entity);
+		}
+
+		return rarity;
 	}
 
 	//TODO make this datadriven
