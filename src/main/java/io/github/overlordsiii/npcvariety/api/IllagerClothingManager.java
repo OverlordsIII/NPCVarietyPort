@@ -8,4 +8,6 @@ public interface IllagerClothingManager {
 	Identifier getShirt();
 	Identifier getShoes();
 	Identifier getTrousers();
+	default void setEyePatch(boolean patch) {
+	}
 }

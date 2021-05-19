@@ -58,6 +58,15 @@ public abstract class EvokerEntityMixin extends SpellcastingIllagerEntity implem
 		return 0;
 	}
 
+	@Override
+	public void setEyePatch(boolean patch) {
+		if (patch) {
+			this.dataTracker.set(headIndex, this.random.nextBoolean() ? 1 : 2);
+		} else {
+			this.dataTracker.set(headIndex, 0);
+		}
+	}
+
 	@Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
 	public void readCustomDataFromTag(CompoundTag tag, CallbackInfo ci) {
 		if (tag.contains("shoeIndex")) {

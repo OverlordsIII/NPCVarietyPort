@@ -31,3 +31,6 @@ bin/
 # fabric
 
 run/
+minecraft/
+minepkg-lock.toml
+minepkg.toml

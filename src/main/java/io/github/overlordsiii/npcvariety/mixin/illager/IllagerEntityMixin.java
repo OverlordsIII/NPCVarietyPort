@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 @Mixin(IllagerEntity.class)
 public abstract class IllagerEntityMixin extends RaiderEntity implements SkinVariantManager, EyeVariantManager {
 
-	private static final TextureIdList SKIN_TEXTURE_ID_LIST = new TextureIdList("textures/entity/illager/", 7, "skin");
+	private static final TextureIdList SKIN_TEXTURE_ID_LIST = new TextureIdList("textures/entity/illager/", 7, "skin");;
 
 	private static final TextureIdList EYE_TEXTURE_ID_LIST = new TextureIdList("textures/entity/illager/eyes", 3, "eye");
 

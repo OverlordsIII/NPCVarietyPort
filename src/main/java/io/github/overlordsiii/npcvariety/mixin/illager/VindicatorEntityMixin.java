@@ -64,6 +64,15 @@ public abstract class VindicatorEntityMixin extends IllagerEntity implements Ill
 		}
 	}
 
+	@Override
+	public void setEyePatch(boolean patch) {
+		if (patch) {
+			this.dataTracker.set(headIndex, this.random.nextBoolean() ? 1 : 2);
+		} else {
+			this.dataTracker.set(headIndex, 0);
+		}
+	}
+
 	private int getEyePatchIndex() {
 		if (this.random.nextFloat() <= 0.05F) {
 			return this.random.nextBoolean() ? 1 : 2;
