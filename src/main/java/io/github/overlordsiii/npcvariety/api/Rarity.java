@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import io.github.overlordsiii.npcvariety.NpcVariety;
+
 /**
  * Represents a single rarity for example Common rarity
  */
@@ -36,11 +38,11 @@ public class Rarity<T> {
 	}
 
 	public enum RarityType {
-		ABUNDANT(50),
-		COMMON(30),
-		REGULAR(10),
-		UNCOMMON(7),
-		RARE(3);
+		ABUNDANT(NpcVariety.CONFIG.abundantRarityPercentage),
+		COMMON(NpcVariety.CONFIG.commonRarityPercentage),
+		REGULAR(NpcVariety.CONFIG.regularRarityPercentage),
+		UNCOMMON(NpcVariety.CONFIG.uncommonRarityPercentage),
+		RARE(NpcVariety.CONFIG.rareRarityPercentage);
 
 		private final int probability;
 

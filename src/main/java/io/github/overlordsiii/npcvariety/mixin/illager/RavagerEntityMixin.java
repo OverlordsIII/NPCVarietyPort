@@ -14,7 +14,7 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.RavagerEntity;
 import net.minecraft.entity.raid.RaiderEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -57,14 +57,14 @@ public abstract class RavagerEntityMixin extends RaiderEntity implements SkinVar
 		this.dataTracker.startTracking(eyeIndex, this.random.nextInt(5));
 	}
 
-	@Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
-	private void readIndex(CompoundTag tag, CallbackInfo ci) {
+	@Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
+	private void readIndex(NbtCompound tag, CallbackInfo ci) {
 		this.dataTracker.set(skinIndex, tag.getInt("skinIndex"));
 		this.dataTracker.set(eyeIndex, tag.getInt("eyeIndex"));
 	}
 
-	@Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
-	private void writeIndex(CompoundTag tag, CallbackInfo ci) {
+	@Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
+	private void writeIndex(NbtCompound tag, CallbackInfo ci) {
 		if (tag.contains("skinIndex")) {
 			tag.putInt("skinIndex", this.dataTracker.get(skinIndex));
 		}

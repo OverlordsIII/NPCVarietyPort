@@ -12,7 +12,7 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.entity.mob.PillagerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -57,13 +57,13 @@ public abstract class PillagerEntityMixin extends IllagerEntity implements Illag
 		}
 	}
 
-	@Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
-	private void readHeadIndex(CompoundTag tag, CallbackInfo ci) {
+	@Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
+	private void readHeadIndex(NbtCompound tag, CallbackInfo ci) {
 		this.dataTracker.set(headIndex, tag.getInt("headIndex"));
 	}
 
-	@Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
-	private void writeHeadIndex(CompoundTag tag, CallbackInfo ci) {
+	@Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
+	private void writeHeadIndex(NbtCompound tag, CallbackInfo ci) {
 		if (tag.contains("headIndex")) {
 			tag.putInt("headIndex", this.dataTracker.get(headIndex));
 		}

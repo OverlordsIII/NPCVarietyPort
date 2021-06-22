@@ -5,13 +5,12 @@ import io.github.overlordsiii.npcvariety.api.EyeVariantManager;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.client.render.entity.model.CompositeEntityModel;
-import net.minecraft.client.render.entity.model.VillagerResemblingModel;
+import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.VillagerEntity;
 
-public class LivingEntityEyeFeatureRenderer<T extends LivingEntity, M extends CompositeEntityModel<T>> extends FeatureRenderer<T, M> {
+public class LivingEntityEyeFeatureRenderer<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
+
 
 	public LivingEntityEyeFeatureRenderer(FeatureRendererContext<T, M> context) {
 		super(context);

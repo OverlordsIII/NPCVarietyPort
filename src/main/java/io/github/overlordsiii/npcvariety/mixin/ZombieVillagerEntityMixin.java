@@ -1,7 +1,6 @@
 package io.github.overlordsiii.npcvariety.mixin;
 
-import java.util.Random;
-
+import io.github.overlordsiii.npcvariety.NpcVariety;
 import io.github.overlordsiii.npcvariety.api.EyeVariantManager;
 import io.github.overlordsiii.npcvariety.api.SkinVariantManager;
 import io.github.overlordsiii.npcvariety.api.TextureIdList;
@@ -18,7 +17,7 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.mob.ZombieVillagerEntity;
 import net.minecraft.entity.passive.VillagerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -36,8 +35,8 @@ public class ZombieVillagerEntityMixin extends ZombieEntity implements SkinVaria
 		super(entityType, world);
 	}
 
-	@Inject(method = "writeCustomDataToTag", at = @At("TAIL"))
-	private void addSkinDataToTag(CompoundTag tag, CallbackInfo ci) {
+	@Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
+	private void addSkinDataToTag(NbtCompound tag, CallbackInfo ci) {
 		tag.putInt("skinIndex", getSkinIndex());
 	}
 
@@ -46,8 +45,8 @@ public class ZombieVillagerEntityMixin extends ZombieEntity implements SkinVaria
 		this.dataTracker.startTracking(SKIN_INDEX, this.random.nextInt(8));
 	}
 
-	@Inject(method = "readCustomDataFromTag", at = @At("TAIL"))
-	private void readSkinDataFromTag(CompoundTag tag, CallbackInfo ci) {
+	@Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))
+	private void readSkinDataFromTag(NbtCompound tag, CallbackInfo ci) {
 		if (tag.contains("skinIndex")) {
 			setSkinIndex(tag.getInt("skinIndex"));
 		}
@@ -71,7 +70,9 @@ public class ZombieVillagerEntityMixin extends ZombieEntity implements SkinVaria
 
 	@Inject(method = "finishConversion", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/EquipmentSlot;values()[Lnet/minecraft/entity/EquipmentSlot;"), locals = LocalCapture.CAPTURE_FAILHARD)
 	private void resetSkins(ServerWorld arg0, CallbackInfo ci, VillagerEntity villagerEntity) {
-		((SkinVariantManager)villagerEntity).setSkinIndex(getSkinIndex());
+		if (NpcVariety.CONFIG.convertZombieVillagerSkinsToVillager) {
+			((SkinVariantManager) villagerEntity).setSkinIndex(getSkinIndex());
+		}
 		((EyeVariantManager)villagerEntity).setEyeIndex(5);
 	}
 }

@@ -12,7 +12,7 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.passive.WanderingTraderEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -36,13 +36,13 @@ public abstract class WanderingTraderEntityMixin extends MerchantEntity implemen
 		this.dataTracker.startTracking(robeIndex, this.random.nextInt(2));
 	}
 
-	@Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
-	private void writeRobeIndex(CompoundTag tag, CallbackInfo ci) {
+	@Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
+	private void writeRobeIndex(NbtCompound tag, CallbackInfo ci) {
 		tag.putInt("robeIndex", this.dataTracker.get(robeIndex));
 	}
 
-	@Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
-	private void readRobeIndex(CompoundTag tag, CallbackInfo ci) {
+	@Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
+	private void readRobeIndex(NbtCompound tag, CallbackInfo ci) {
 		if (tag.contains("robeIndex")) {
 			this.dataTracker.set(robeIndex, tag.getInt("robeIndex"));
 		}

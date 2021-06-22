@@ -12,7 +12,7 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.entity.mob.VindicatorEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -48,14 +48,14 @@ public abstract class VindicatorEntityMixin extends IllagerEntity implements Ill
 		this.dataTracker.startTracking(shoeIndex, this.random.nextInt(2));
 	}
 
-	@Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
-	private void readIndexes(CompoundTag tag, CallbackInfo ci) {
+	@Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
+	private void readIndexes(NbtCompound tag, CallbackInfo ci) {
 		this.dataTracker.set(headIndex, tag.getInt("headIndex"));
 		this.dataTracker.set(shoeIndex, tag.getInt("shoeIndex"));
 	}
 
-	@Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
-	private void writeIndexes(CompoundTag tag, CallbackInfo ci) {
+	@Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
+	private void writeIndexes(NbtCompound tag, CallbackInfo ci) {
 		if (tag.contains("headIndex")) {
 			tag.putInt("headIndex", this.dataTracker.get(headIndex));
 		}

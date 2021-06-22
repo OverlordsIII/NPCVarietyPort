@@ -1,5 +1,7 @@
 package io.github.overlordsiii.npcvariety.mixin;
 
+import static io.github.overlordsiii.npcvariety.NpcVariety.CONFIG;
+
 import io.github.overlordsiii.npcvariety.api.SkinVariantManager;
 import io.github.overlordsiii.npcvariety.feature.LivingEntityEyeFeatureRenderer;
 import io.github.overlordsiii.npcvariety.feature.TraderClothingFeatureRenderer;
@@ -9,28 +11,32 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.render.entity.WanderingTraderEntityRenderer;
 import net.minecraft.client.render.entity.model.VillagerResemblingModel;
 import net.minecraft.entity.passive.WanderingTraderEntity;
-import net.minecraft.resource.ReloadableResourceManager;
 import net.minecraft.util.Identifier;
 
 @Mixin(WanderingTraderEntityRenderer.class)
 public abstract class WanderingTraderEntityRendererMixin extends MobEntityRenderer<WanderingTraderEntity, VillagerResemblingModel<WanderingTraderEntity>> {
-	public WanderingTraderEntityRendererMixin(EntityRenderDispatcher entityRenderDispatcher, VillagerResemblingModel<WanderingTraderEntity> entityModel, float f) {
-		super(entityRenderDispatcher, entityModel, f);
+
+	public WanderingTraderEntityRendererMixin(EntityRendererFactory.Context context, VillagerResemblingModel<WanderingTraderEntity> entityModel, float f) {
+		super(context, entityModel, f);
 	}
 
 	@Inject(method = "getTexture", at = @At("RETURN"), cancellable = true)
 	private void resetTexture(WanderingTraderEntity wanderingTraderEntity, CallbackInfoReturnable<Identifier> cir) {
-		cir.setReturnValue(((SkinVariantManager)wanderingTraderEntity).getSkinVariant());
+		if (CONFIG.wanderingTraderVariation) {
+			cir.setReturnValue(((SkinVariantManager) wanderingTraderEntity).getSkinVariant());
+		}
 	}
 
 	@Inject(method = "<init>", at = @At("TAIL"))
-	private void addEyeRenderer(EntityRenderDispatcher entityRenderDispatcher, CallbackInfo ci) {
-		this.addFeature(new LivingEntityEyeFeatureRenderer<>(this));
-		this.addFeature(new TraderClothingFeatureRenderer<>(this));
+	private void addEyeRenderer(EntityRendererFactory.Context context, CallbackInfo ci) {
+		if (CONFIG.wanderingTraderVariation) {
+			this.addFeature(new LivingEntityEyeFeatureRenderer<>(this));
+			this.addFeature(new TraderClothingFeatureRenderer<>(this));
+		}
 	}
 }

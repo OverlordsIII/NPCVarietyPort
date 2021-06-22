@@ -12,7 +12,8 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.EvokerEntity;
 import net.minecraft.entity.mob.SpellcastingIllagerEntity;
-import net.minecraft.nbt.CompoundTag;
+
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -67,21 +68,24 @@ public abstract class EvokerEntityMixin extends SpellcastingIllagerEntity implem
 		}
 	}
 
-	@Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
-	public void readCustomDataFromTag(CompoundTag tag, CallbackInfo ci) {
+	@Override
+	public void writeCustomDataToNbt(NbtCompound tag) {
+		tag.putInt("shoeIndex", this.dataTracker.get(shoeIndex));
+		tag.putInt("headIndex", this.dataTracker.get(headIndex));
+		super.writeCustomDataToNbt(tag);
+	}
+
+	@Override
+	public void readCustomDataFromNbt(NbtCompound tag) {
 		if (tag.contains("shoeIndex")) {
 			this.dataTracker.set(shoeIndex, tag.getInt("shoeIndex"));
 		}
 		if (tag.contains("headIndex")) {
 			this.dataTracker.set(headIndex, tag.getInt("headIndex"));
 		}
+		super.readCustomDataFromNbt(tag);
 	}
 
-	@Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
-	public void writeCustomDataToTag(CompoundTag tag, CallbackInfo ci) {
-		tag.putInt("shoeIndex", this.dataTracker.get(shoeIndex));
-		tag.putInt("headIndex", this.dataTracker.get(headIndex));
-	}
 
 	@Override
 	public Identifier getHeadFeature() {

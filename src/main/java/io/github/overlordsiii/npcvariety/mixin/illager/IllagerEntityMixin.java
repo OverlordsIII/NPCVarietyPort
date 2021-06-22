@@ -4,18 +4,14 @@ import io.github.overlordsiii.npcvariety.api.EyeVariantManager;
 import io.github.overlordsiii.npcvariety.api.SkinVariantManager;
 import io.github.overlordsiii.npcvariety.api.TextureIdList;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.IllagerEntity;
-import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.raid.RaiderEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -42,22 +38,23 @@ public abstract class IllagerEntityMixin extends RaiderEntity implements SkinVar
 	}
 
 
-	@Override
-	public void writeCustomDataToTag(CompoundTag tag) {
-		super.writeCustomDataToTag(tag);
-		tag.putInt("eyeIndex", getEyeIndex());
-		tag.putInt("skinIndex", getSkinIndex());
-	}
 
 	@Override
-	public void readCustomDataFromTag(CompoundTag tag) {
-		super.readCustomDataFromTag(tag);
+	public void readCustomDataFromNbt(NbtCompound tag) {
+		super.readCustomDataFromNbt(tag);
 		if (tag.contains("eyeIndex")) {
 			setEyeIndex(tag.getInt("eyeIndex"));
 		}
 		if (tag.contains("skinIndex")) {
 			setSkinIndex(tag.getInt("skinIndex"));
 		}
+	}
+
+	@Override
+	public void writeCustomDataToNbt(NbtCompound tag) {
+		tag.putInt("eyeIndex", getEyeIndex());
+		tag.putInt("skinIndex", getSkinIndex());
+		super.writeCustomDataToNbt(tag);
 	}
 
 	private int getRandomEyeIndex() {

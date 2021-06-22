@@ -1,5 +1,7 @@
 package io.github.overlordsiii.npcvariety.mixin;
 
+import static io.github.overlordsiii.npcvariety.NpcVariety.CONFIG;
+
 import io.github.overlordsiii.npcvariety.api.SkinVariantManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,6 +17,8 @@ public class ZombieVillagerEntityRendererMixin {
 
 	@Inject(method = "getTexture", at = @At("RETURN"), cancellable = true)
 	private void setSkinTexture(ZombieVillagerEntity zombieVillagerEntity, CallbackInfoReturnable<Identifier> cir) {
-		cir.setReturnValue(((SkinVariantManager)zombieVillagerEntity).getSkinVariant());
+		if (CONFIG.zombieVillagerVariation) {
+			cir.setReturnValue(((SkinVariantManager) zombieVillagerEntity).getSkinVariant());
+		}
 	}
 }

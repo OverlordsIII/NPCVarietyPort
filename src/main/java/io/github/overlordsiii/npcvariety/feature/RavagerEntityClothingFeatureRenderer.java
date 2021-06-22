@@ -5,11 +5,11 @@ import io.github.overlordsiii.npcvariety.api.RavagerClothingManager;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.client.render.entity.model.CompositeEntityModel;
+import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.mob.RavagerEntity;
 
-public class RavagerEntityClothingFeatureRenderer<T extends RavagerEntity, M extends CompositeEntityModel<T>> extends FeatureRenderer<T, M> {
+public class RavagerEntityClothingFeatureRenderer<T extends RavagerEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
 	public RavagerEntityClothingFeatureRenderer(FeatureRendererContext<T, M> context) {
 		super(context);
 	}
