@@ -33,11 +33,11 @@ public abstract class RavagerEntityMixin extends RaiderEntity implements SkinVar
 	};
 
 	private static final Identifier[] eyeTextures = {
-		new Identifier("npcvariety:textures/entity/illager/eyes/eye0.png"),
-		new Identifier("npcvariety:textures/entity/illager/eyes/eye1.png"),
-		new Identifier("npcvariety:textures/entity/illager/eyes/eye2.png"),
-		new Identifier("npcvariety:textures/entity/illager/eyes/eye3.png"),
-		new Identifier("npcvariety:textures/entity/illager/eyes/eye4.png"),
+		new Identifier("npcvariety:textures/entity/illager/ravager/eyes/ravager_amber.png"),
+		new Identifier("npcvariety:textures/entity/illager/ravager/eyes/ravager_blue.png"),
+		new Identifier("npcvariety:textures/entity/illager/ravager/eyes/ravager_brown.png"),
+		new Identifier("npcvariety:textures/entity/illager/ravager/eyes/ravager_green.png"),
+		new Identifier("npcvariety:textures/entity/illager/ravager/eyes/ravager_light_blue.png"),
 	};
 
 	private static final Identifier clothing = new Identifier("npcvariety:textures/entity/illager/ravager/chains.png");
