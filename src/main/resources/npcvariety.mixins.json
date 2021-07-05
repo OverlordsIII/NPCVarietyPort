@@ -22,7 +22,8 @@
     "illager.VindicatorEntityMixin",
     "illager.VindicatorEntityRendererMixin",
     "spawner.PillagerSpawnerMixin",
-    "spawner.RaidMixin"
+    "spawner.RaidMixin",
+    "spawner.SpawnHelperMixin"
   ],
   "client": [
   ],

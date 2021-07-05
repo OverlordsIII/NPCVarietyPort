@@ -35,8 +35,8 @@ public abstract class RavagerEntityRendererMixin extends MobEntityRenderer<Ravag
 	@Inject(method = "<init>", at = @At("TAIL"))
 	private void addFeatures(EntityRendererFactory.Context context, CallbackInfo ci) {
 		if (CONFIG.ravagerVariation) {
-			this.addFeature(new LivingEntityEyeFeatureRenderer<>(this));
 			this.addFeature(new RavagerEntityClothingFeatureRenderer<>(this));
+			this.addFeature(new LivingEntityEyeFeatureRenderer<>(this));
 		}
 	}
 }

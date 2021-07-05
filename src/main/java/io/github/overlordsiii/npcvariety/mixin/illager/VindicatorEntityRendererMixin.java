@@ -36,7 +36,8 @@ public abstract class VindicatorEntityRendererMixin <T extends IllagerEntity> ex
 
 	@Inject(method = "<init>", at = @At("TAIL"))
 	private void addIllagerFeature(EntityRendererFactory.Context context, CallbackInfo ci) {
-		this.addFeature(new IllagerEntityFeaturesRenderer<>(this));
 		this.addFeature(new LivingEntityEyeFeatureRenderer<>(this));
+		this.addFeature(new IllagerEntityFeaturesRenderer<>(this));
+
 	}
 }

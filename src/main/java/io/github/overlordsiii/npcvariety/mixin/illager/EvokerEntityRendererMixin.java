@@ -36,8 +36,8 @@ public abstract class EvokerEntityRendererMixin <T extends SpellcastingIllagerEn
 	@Inject(method = "<init>", at = @At("TAIL"))
 	private void addEyeTexture(EntityRendererFactory.Context context, CallbackInfo ci) {
 		if (CONFIG.evokerVariation) {
-			this.addFeature(new IllagerEntityFeaturesRenderer<>(this));
 			this.addFeature(new LivingEntityEyeFeatureRenderer<>(this));
+			this.addFeature(new IllagerEntityFeaturesRenderer<>(this));
 		}
 	}
 

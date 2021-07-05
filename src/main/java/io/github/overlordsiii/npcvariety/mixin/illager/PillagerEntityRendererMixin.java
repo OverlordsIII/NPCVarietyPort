@@ -37,8 +37,8 @@ public abstract class PillagerEntityRendererMixin <T extends IllagerEntity> exte
 	@Inject(method = "<init>", at = @At("TAIL"))
 	protected void addFeatures(EntityRendererFactory.Context context, CallbackInfo ci) {
 		if (CONFIG.pillagerVariation) {
-			this.addFeature(new IllagerEntityFeaturesRenderer<>(this));
 			this.addFeature(new LivingEntityEyeFeatureRenderer<>(this));
+			this.addFeature(new IllagerEntityFeaturesRenderer<>(this));
 		}
 	}
 }
