@@ -108,4 +108,9 @@ public class NPCVarietyConfig implements ConfigData {
 	@Comment("Gives skin variation for zombie villagers")
 	public boolean zombieVillagerVariation = true;
 
+	@ConfigEntry.Category("generalRules")
+	@ConfigEntry.Gui.Tooltip
+	@Comment("Gives cured villagers red eyes, uesful for remembering if a villager was cured already or not")
+	public boolean convertedVillagersHaveRedEyes = false;
+
 }

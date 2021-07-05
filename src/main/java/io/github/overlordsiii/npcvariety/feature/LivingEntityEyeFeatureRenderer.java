@@ -18,8 +18,8 @@ public class LivingEntityEyeFeatureRenderer<T extends LivingEntity, M extends En
 
 	@Override
 	public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-		if (!entity.isInvisible() && !entity.isSleeping() && entity instanceof EyeVariantManager) {
-			renderModel(this.getContextModel(), ((EyeVariantManager) entity).getEyeVariant(), matrices, vertexConsumers, light, entity, 1.0F, 1.0F, 1.0F);
+		if (!entity.isInvisible()  && !entity.isSleeping()  && entity instanceof EyeVariantManager manager) {
+			renderModel(this.getContextModel(), manager.getEyeVariant(), matrices, vertexConsumers, light, entity, 1.0F, 1.0F, 1.0F);
 		}
 	}
 }

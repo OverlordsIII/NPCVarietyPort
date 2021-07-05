@@ -73,6 +73,8 @@ public class ZombieVillagerEntityMixin extends ZombieEntity implements SkinVaria
 		if (NpcVariety.CONFIG.convertZombieVillagerSkinsToVillager) {
 			((SkinVariantManager) villagerEntity).setSkinIndex(getSkinIndex());
 		}
-		((EyeVariantManager)villagerEntity).setEyeIndex(5);
+		if (NpcVariety.CONFIG.convertedVillagersHaveRedEyes) {
+			((EyeVariantManager) villagerEntity).setEyeIndex(5);
+		}
 	}
 }

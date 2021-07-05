@@ -36,5 +36,7 @@
   "text.autoconfig.npcvariety.option.vindicatorVariation.@Tooltip": "Adds variation for Vindicator Entities",
   "text.autoconfig.npcvariety.option.villagerVariation.@Tooltip": "Adds variation for Villager Entities",
   "text.autoconfig.npcvariety.option.wanderingTraderVariation.@Tooltip": "Adds variation for Wandering Trader Entities",
-  "text.autoconfig.npcvariety.option.zombieVillagerVariation.@Tooltip": "Adds variation for Zombie Villager Entities"
+  "text.autoconfig.npcvariety.option.zombieVillagerVariation.@Tooltip": "Adds variation for Zombie Villager Entities",
+  "text.autoconfig.npcvariety.option.convertedVillagersHaveRedEyes": "Red eyes for Converted Villagers",
+  "text.autoconfig.npcvariety.option.convertedVillagersHaveRedEyes.@Tooltip": "Gives red eyes for converted zombie villagers"
 }
