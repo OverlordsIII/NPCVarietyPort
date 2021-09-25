@@ -14,8 +14,10 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
+import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.World;
 
 @Mixin(MerchantEntity.class)
@@ -29,6 +31,7 @@ public abstract class MerchantEntityMixin extends PassiveEntity implements SkinV
 	private static final TextureIdList SKIN_TEXTURE_ID_LIST = new TextureIdList("textures/entity/villager/", 10, "skin");
 
 	private static final TextureIdList EYE_TEXTURE_ID_LIST = new TextureIdList("textures/entity/villager/eyes", 4, "eye");
+	private static final TextureIdList HALF_EYE_TEXTURE_ID_LIST = new TextureIdList("textures/entity/villager/eyes/half", 4, "eye");
 
 
 	private static final TrackedData<Integer> SKIN_INDEX = DataTracker.registerData(MerchantEntity.class, TrackedDataHandlerRegistry.INTEGER);
@@ -82,7 +85,19 @@ public abstract class MerchantEntityMixin extends PassiveEntity implements SkinV
 	public Identifier getEyeVariant() {
 
 		if (getEyeIndex() == 5) {
+			if (((MerchantEntity) (Object) this) instanceof VillagerEntity entity) {
+				if (entity.getVillagerData().getProfession().equals(VillagerProfession.WEAPONSMITH)) {
+					return new Identifier("npcvariety:textures/entity/villager/eyes/half/eye5.png");
+				}
+			}
+
 			return new Identifier("npcvariety:textures/entity/villager/eyes/eye5.png");
+		}
+
+		if (((MerchantEntity) (Object) this) instanceof VillagerEntity entity) {
+			if (entity.getVillagerData().getProfession().equals(VillagerProfession.WEAPONSMITH)) {
+				return HALF_EYE_TEXTURE_ID_LIST.get(getEyeIndex());
+			}
 		}
 
 		return EYE_TEXTURE_ID_LIST.get(getEyeIndex());
