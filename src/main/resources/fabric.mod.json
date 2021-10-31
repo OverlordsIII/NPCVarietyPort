@@ -12,7 +12,8 @@
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/npc-variety-port",
-    "sources": "https://github.com/OverlordsIII/NPCVarietyPort"
+    "sources": "https://github.com/OverlordsIII/NPCVarietyPort",
+    "issues": "https://github.com/OverlordsIII/NPCVarietyPort/issues"
   },
 
   "license": "ARR",
