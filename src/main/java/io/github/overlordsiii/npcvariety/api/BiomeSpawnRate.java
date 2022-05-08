@@ -1,11 +1,14 @@
 package io.github.overlordsiii.npcvariety.api;
 
-import static io.github.overlordsiii.npcvariety.api.Rarity.RarityType.*;
+import static io.github.overlordsiii.npcvariety.api.Rarity.RarityType.ABUNDANT;
+import static io.github.overlordsiii.npcvariety.api.Rarity.RarityType.COMMON;
+import static io.github.overlordsiii.npcvariety.api.Rarity.RarityType.RARE;
+import static io.github.overlordsiii.npcvariety.api.Rarity.RarityType.REGULAR;
+import static io.github.overlordsiii.npcvariety.api.Rarity.RarityType.UNCOMMON;
 
 import java.util.Random;
 
 import net.minecraft.entity.passive.VillagerEntity;
-import net.minecraft.text.Text;
 
 public enum BiomeSpawnRate {
 	DESERT(new Rarity<>(8), new Rarity<>(5, 6, 7), new Rarity<>(4, 10), new Rarity<>(0, 1, 2, 3), new Rarity<>(9)),
@@ -33,19 +36,19 @@ public enum BiomeSpawnRate {
 	public Rarity<Integer> getRandom(VillagerEntity entity, Random random) {
 
 		if (abundant.getType().test(random)) {
-			System.out.println("Giving villager (" + entity.getName().asString() + ") with rate type: " + this + " to abundant with values: " + abundant.getValues());
+		//	System.out.println("Giving villager (" + entity.getName().asString() + ") with rate type: " + this + " to abundant with values: " + abundant.getValues());
 			return abundant;
 		} else if (common.getType().test(random)) {
-			System.out.println("Giving villager (" + entity.getName().asString() + ") with rate type: " + this + " to common with values: " + common.getValues());
+		//	System.out.println("Giving villager (" + entity.getName().asString() + ") with rate type: " + this + " to common with values: " + common.getValues());
 			return common;
 		} else if (regular.getType().test(random)) {
-			System.out.println("Giving villager (" + entity.getName().asString() + ") with rate type: " + this + " to regular with values: " + regular.getValues());
+		//	System.out.println("Giving villager (" + entity.getName().asString() + ") with rate type: " + this + " to regular with values: " + regular.getValues());
 			return regular;
 		} else if (uncommon.getType().test(random)) {
-			System.out.println("Giving villager (" + entity.getName().asString() + ") with rate type: " + this + " to uncommon with values: " + uncommon.getValues());
+		//	System.out.println("Giving villager (" + entity.getName().asString() + ") with rate type: " + this + " to uncommon with values: " + uncommon.getValues());
 			return uncommon;
 		} else if (rare.getType().test(random)){
-			System.out.println("Giving villager (" + entity.getName().asString() + ") with rate type: " + this + " to rare with values: " + rare.getValues());
+		//	System.out.println("Giving villager (" + entity.getName().asString() + ") with rate type: " + this + " to rare with values: " + rare.getValues());
 			return rare;
 		}
 
