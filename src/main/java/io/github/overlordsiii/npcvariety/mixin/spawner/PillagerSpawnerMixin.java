@@ -8,9 +8,9 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.mob.PatrolEntity;
-import net.minecraft.world.gen.PillagerSpawner;
+import net.minecraft.world.spawner.PatrolSpawner;
 
-@Mixin(PillagerSpawner.class)
+@Mixin(PatrolSpawner.class)
 public class PillagerSpawnerMixin {
 /*
 	@Inject(method = "spawnPillager", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/PatrolEntity;initialize(Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/world/LocalDifficulty;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/EntityData;Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/entity/EntityData;"))
