@@ -4,6 +4,8 @@ import io.github.overlordsiii.npcvariety.config.NPCVarietyConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 
+import net.minecraft.util.Util;
+
 import net.fabricmc.api.ModInitializer;
 
 public class NpcVariety implements ModInitializer {
@@ -18,6 +20,5 @@ public class NpcVariety implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-
 	}
 }

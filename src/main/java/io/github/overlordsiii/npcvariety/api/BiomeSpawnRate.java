@@ -8,8 +8,6 @@ import static io.github.overlordsiii.npcvariety.api.Rarity.RarityType.UNCOMMON;
 
 import java.util.Random;
 
-import net.minecraft.entity.passive.VillagerEntity;
-
 public enum BiomeSpawnRate {
 	DESERT(new Rarity<>(8), new Rarity<>(5, 6, 7), new Rarity<>(4, 10), new Rarity<>(0, 1, 2, 3), new Rarity<>(9)),
 	PLAINS(new Rarity<>(4), new Rarity<>(5, 3), new Rarity<>(0, 1, 2, 6, 7), new Rarity<>(8), new Rarity<>(9, 10)),
@@ -33,7 +31,7 @@ public enum BiomeSpawnRate {
 		this.rare = rare.setType(RARE);
 	}
 
-	public Rarity<Integer> getRandom(VillagerEntity entity, Random random) {
+	public Rarity<Integer> getRandom(Random random) {
 
 		if (abundant.getType().test(random)) {
 		//	System.out.println("Giving villager (" + entity.getName().asString() + ") with rate type: " + this + " to abundant with values: " + abundant.getValues());

@@ -1,5 +1,7 @@
 package io.github.overlordsiii.npcvariety.mixin;
 
+import java.util.Random;
+
 import io.github.overlordsiii.npcvariety.NpcVariety;
 import io.github.overlordsiii.npcvariety.api.BiomeSpawnRate;
 import io.github.overlordsiii.npcvariety.api.EyeVariantManager;
@@ -58,7 +60,7 @@ public abstract class VillagerEntityMixin extends MerchantEntity {
 		if (spawnReason == SpawnReason.STRUCTURE && NpcVariety.CONFIG.naturalVariation) {
 			BiomeSpawnRate rate = getRateFromType(this.getVillagerData());
 
-			Rarity<Integer> numbers = getRandomRarity(rate, (VillagerEntity) (Object) this);
+			Rarity<Integer> numbers = getRandomRarity(rate);
 
 			int index = this.random.nextInt(numbers.getValues().size());
 
@@ -68,15 +70,15 @@ public abstract class VillagerEntityMixin extends MerchantEntity {
 		}
 	}
 
-	private static Rarity<Integer> getRandomRarity(BiomeSpawnRate rate, VillagerEntity entity) {
-		Rarity<Integer> rarity = rate.getRandom(entity, entity.getRandom());
+	private static Rarity<Integer> getRandomRarity(BiomeSpawnRate rate) {
+		Rarity<Integer> rarity = rate.getRandom(new Random());
 
 		if (rarity == null) {
-			return getRandomRarity(rate, entity);
+			return getRandomRarity(rate);
 		}
 
 		if (rarity.getValues().isEmpty()) {
-			return getRandomRarity(rate, entity);
+			return getRandomRarity(rate);
 		}
 
 		return rarity;
