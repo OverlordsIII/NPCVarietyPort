@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.mob.MobEntity;
@@ -25,7 +26,7 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 public class SpawnHelperMixin {
 
 	@Inject(method = "spawnEntitiesInChunk(Lnet/minecraft/entity/SpawnGroup;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/world/chunk/Chunk;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/SpawnHelper$Checker;Lnet/minecraft/world/SpawnHelper$Runner;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/MobEntity;refreshPositionAndAngles(DDDFF)V"), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
-	private static void addPatchtoNaturallySpawningLeaders(SpawnGroup group, ServerWorld world, Chunk chunk, BlockPos pos, SpawnHelper.Checker checker, SpawnHelper.Runner runner, CallbackInfo ci, StructureAccessor structureAccessor, ChunkGenerator chunkGenerator, int i, BlockPos.Mutable mutable, int j, int k, int l, int m, int n, SpawnSettings.SpawnEntry spawnEntry, EntityData entityData, int o, int p, int q, double d, double e, PlayerEntity playerEntity, double f, MobEntity mobEntity) {
+	private static void addPatchToNaturallySpawningLeaders(SpawnGroup group, ServerWorld world, Chunk chunk, BlockPos pos, SpawnHelper.Checker checker, SpawnHelper.Runner runner, CallbackInfo ci, StructureAccessor structureAccessor, ChunkGenerator chunkGenerator, int z, BlockPos.Mutable mutable, int a, int b, int c, int d, int e, SpawnSettings.SpawnEntry entry, EntityData data, int f, int g, int h, double i, double j, PlayerEntity entity, double k, MobEntity mobEntity) {
 		if (mobEntity instanceof PillagerEntity pillagerEntity) {
 			if (pillagerEntity instanceof IllagerClothingManager manager && pillagerEntity.isPatrolLeader()) {
 				manager.setEyePatch(true);
