@@ -3,30 +3,22 @@ package io.github.overlordsiii.npcvariety.mixin.spawner;
 import io.github.overlordsiii.npcvariety.api.IllagerClothingManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityData;
-import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.PillagerEntity;
 import net.minecraft.entity.mob.VindicatorEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.SpawnHelper;
-import net.minecraft.world.biome.SpawnSettings;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.gen.StructureAccessor;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
 
 @Mixin(SpawnHelper.class)
 public class SpawnHelperMixin {
 
-	@Inject(method = "spawnEntitiesInChunk(Lnet/minecraft/entity/SpawnGroup;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/world/chunk/Chunk;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/SpawnHelper$Checker;Lnet/minecraft/world/SpawnHelper$Runner;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/MobEntity;refreshPositionAndAngles(DDDFF)V"), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
-	private static void addPatchToNaturallySpawningLeaders(SpawnGroup group, ServerWorld world, Chunk chunk, BlockPos pos, SpawnHelper.Checker checker, SpawnHelper.Runner runner, CallbackInfo ci, StructureAccessor structureAccessor, ChunkGenerator chunkGenerator, int z, BlockPos.Mutable mutable, int a, int b, int c, int d, int e, SpawnSettings.SpawnEntry entry, EntityData data, int f, int g, int h, double i, double j, PlayerEntity entity, double k, MobEntity mobEntity) {
+	@ModifyArg(
+		method = "spawnEntitiesInChunk(Lnet/minecraft/entity/SpawnGroup;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/world/chunk/Chunk;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/SpawnHelper$Checker;Lnet/minecraft/world/SpawnHelper$Runner;)V",
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/world/SpawnHelper;isValidSpawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/mob/MobEntity;D)Z"),
+		index = 1
+	)
+	private static MobEntity addPatchToNaturallySpawningLeaders(MobEntity mobEntity) {
 		if (mobEntity instanceof PillagerEntity pillagerEntity) {
 			if (pillagerEntity instanceof IllagerClothingManager manager && pillagerEntity.isPatrolLeader()) {
 				manager.setEyePatch(true);
@@ -36,6 +28,7 @@ public class SpawnHelperMixin {
 				manager.setEyePatch(true);
 			}
 		}
+		return mobEntity;
 	}
 
 }
