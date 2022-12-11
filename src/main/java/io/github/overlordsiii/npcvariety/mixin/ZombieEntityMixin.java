@@ -20,7 +20,7 @@ public class ZombieEntityMixin {
 
 
 	@Inject(method = "onKilledOther", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/ZombieVillagerEntity;setXp(I)V"), locals = LocalCapture.CAPTURE_FAILHARD)
-	private void setZombieVillagerSkinIndex(ServerWorld world, LivingEntity other, CallbackInfoReturnable<Boolean> cir, VillagerEntity villagerEntity, ZombieVillagerEntity zombieVillagerEntity) {
+	private void setZombieVillagerSkinIndex(ServerWorld world, LivingEntity other, CallbackInfoReturnable<Boolean> cir, boolean bl, VillagerEntity villagerEntity, ZombieVillagerEntity zombieVillagerEntity) {
 		if (CONFIG.convertVillagerToZombieVillagerSkin) {
 			((SkinVariantManager) zombieVillagerEntity).setSkinIndex(((SkinVariantManager) villagerEntity).getSkinIndex());
 		}
