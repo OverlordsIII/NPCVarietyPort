@@ -20,8 +20,8 @@ import net.minecraft.world.World;
 public abstract class WanderingTraderEntityMixin extends MerchantEntity implements TraderClothingManager {
 
 	private static final Identifier[] robeTextures = {
-		new Identifier("npcvariety:textures/entity/trader/blue_robe.png"),
-		new Identifier("npcvariety:textures/entity/trader/red_gem_head.png")
+		Identifier.of("npcvariety:textures/entity/trader/blue_robe.png"),
+		Identifier.of("npcvariety:textures/entity/trader/red_gem_head.png")
 	};
 
 	private static final TrackedData<Integer> robeIndex = DataTracker.registerData(WanderingTraderEntity.class, TrackedDataHandlerRegistry.INTEGER);

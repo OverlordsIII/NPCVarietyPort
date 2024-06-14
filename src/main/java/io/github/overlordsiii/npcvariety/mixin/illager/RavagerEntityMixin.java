@@ -22,25 +22,25 @@ import net.minecraft.world.World;
 public abstract class RavagerEntityMixin extends RaiderEntity implements SkinVariantManager, EyeVariantManager, RavagerClothingManager {
 
 	private static final Identifier[] skinTextures = {
-		new Identifier("npcvariety:textures/entity/illager/ravager/ravager1.png"),
-		new Identifier("npcvariety:textures/entity/illager/ravager/ravager2.png"),
-		new Identifier("npcvariety:textures/entity/illager/ravager/ravager3.png"),
-		new Identifier("npcvariety:textures/entity/illager/ravager/ravager4.png"),
-		new Identifier("npcvariety:textures/entity/illager/ravager/ravager5.png"),
-		new Identifier("npcvariety:textures/entity/illager/ravager/ravager6.png"),
-		new Identifier("npcvariety:textures/entity/illager/ravager/ravager7.png"),
-		new Identifier("npcvariety:textures/entity/illager/ravager/ravager8.png"),
+		Identifier.of("npcvariety:textures/entity/illager/ravager/ravager1.png"),
+		Identifier.of("npcvariety:textures/entity/illager/ravager/ravager2.png"),
+		Identifier.of("npcvariety:textures/entity/illager/ravager/ravager3.png"),
+		Identifier.of("npcvariety:textures/entity/illager/ravager/ravager4.png"),
+		Identifier.of("npcvariety:textures/entity/illager/ravager/ravager5.png"),
+		Identifier.of("npcvariety:textures/entity/illager/ravager/ravager6.png"),
+		Identifier.of("npcvariety:textures/entity/illager/ravager/ravager7.png"),
+		Identifier.of("npcvariety:textures/entity/illager/ravager/ravager8.png"),
 	};
 
 	private static final Identifier[] eyeTextures = {
-		new Identifier("npcvariety:textures/entity/illager/ravager/eyes/ravager_amber.png"),
-		new Identifier("npcvariety:textures/entity/illager/ravager/eyes/ravager_blue.png"),
-		new Identifier("npcvariety:textures/entity/illager/ravager/eyes/ravager_brown.png"),
-		new Identifier("npcvariety:textures/entity/illager/ravager/eyes/ravager_green.png"),
-		new Identifier("npcvariety:textures/entity/illager/ravager/eyes/ravager_light_blue.png"),
+		Identifier.of("npcvariety:textures/entity/illager/ravager/eyes/ravager_amber.png"),
+		Identifier.of("npcvariety:textures/entity/illager/ravager/eyes/ravager_blue.png"),
+		Identifier.of("npcvariety:textures/entity/illager/ravager/eyes/ravager_brown.png"),
+		Identifier.of("npcvariety:textures/entity/illager/ravager/eyes/ravager_green.png"),
+		Identifier.of("npcvariety:textures/entity/illager/ravager/eyes/ravager_light_blue.png"),
 	};
 
-	private static final Identifier clothing = new Identifier("npcvariety:textures/entity/illager/ravager/chains.png");
+	private static final Identifier clothing = Identifier.of("npcvariety:textures/entity/illager/ravager/chains.png");
 
 	private static final TrackedData<Integer> skinIndex = DataTracker.registerData(RavagerEntity.class, TrackedDataHandlerRegistry.INTEGER);
 

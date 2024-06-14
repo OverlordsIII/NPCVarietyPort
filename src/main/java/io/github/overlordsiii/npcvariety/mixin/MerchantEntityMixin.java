@@ -29,13 +29,18 @@ public abstract class MerchantEntityMixin extends PassiveEntity implements SkinV
 		super(entityType, world);
 	}
 
+	@Unique
 	private static final TextureIdList SKIN_TEXTURE_ID_LIST = new TextureIdList("textures/entity/villager/", 10, "skin");
 
+	@Unique
 	private static final TextureIdList EYE_TEXTURE_ID_LIST = new TextureIdList("textures/entity/villager/eyes", 4, "eye");
+	@Unique
 	private static final TextureIdList HALF_EYE_TEXTURE_ID_LIST = new TextureIdList("textures/entity/villager/eyes/half", 4, "eye");
 
 
+	@Unique
 	private static final TrackedData<Integer> SKIN_INDEX = DataTracker.registerData(MerchantEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	@Unique
 	private static final TrackedData<Integer> EYE_INDEX = DataTracker.registerData(MerchantEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
 	@Inject(method = "initDataTracker", at = @At("TAIL"))
@@ -89,11 +94,11 @@ public abstract class MerchantEntityMixin extends PassiveEntity implements SkinV
 		if (getEyeIndex() == 5) {
 			if (((MerchantEntity) (Object) this) instanceof VillagerEntity entity) {
 				if (entity.getVillagerData().getProfession().equals(VillagerProfession.WEAPONSMITH)) {
-					return new Identifier("npcvariety:textures/entity/villager/eyes/half/eye5.png");
+					return Identifier.of("npcvariety:textures/entity/villager/eyes/half/eye5.png");
 				}
 			}
 
-			return new Identifier("npcvariety:textures/entity/villager/eyes/eye5.png");
+			return Identifier.of("npcvariety:textures/entity/villager/eyes/eye5.png");
 		}
 
 		if (((MerchantEntity) (Object) this) instanceof VillagerEntity entity) {

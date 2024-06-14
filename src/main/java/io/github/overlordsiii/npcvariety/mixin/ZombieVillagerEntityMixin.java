@@ -5,6 +5,7 @@ import io.github.overlordsiii.npcvariety.api.EyeVariantManager;
 import io.github.overlordsiii.npcvariety.api.SkinVariantManager;
 import io.github.overlordsiii.npcvariety.api.TextureIdList;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -26,9 +27,11 @@ import net.minecraft.world.World;
 @Mixin(ZombieVillagerEntity.class)
 public abstract class ZombieVillagerEntityMixin extends ZombieEntity implements SkinVariantManager {
 
+	@Unique
 	@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 	private static final TextureIdList SKIN_TEXTURE_ID_LIST = new TextureIdList("textures/entity/zombie_villager/", 10, "skin");
 
+	@Unique
 	private static final TrackedData<Integer> SKIN_INDEX = DataTracker.registerData(ZombieVillagerEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
 	public ZombieVillagerEntityMixin(EntityType<? extends ZombieEntity> entityType, World world) {
@@ -68,8 +71,8 @@ public abstract class ZombieVillagerEntityMixin extends ZombieEntity implements 
 	}
 
 
-	@Inject(method = "finishConversion", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/EquipmentSlot;values()[Lnet/minecraft/entity/EquipmentSlot;"), locals = LocalCapture.CAPTURE_FAILHARD)
-	private void resetSkins(ServerWorld arg0, CallbackInfo ci, VillagerEntity villagerEntity) {
+	@Inject(method = "finishConversion", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/VillagerEntity;initialize(Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/world/LocalDifficulty;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/EntityData;)Lnet/minecraft/entity/EntityData;"), locals = LocalCapture.CAPTURE_FAILHARD)
+	private void resetSkins(ServerWorld world, CallbackInfo ci, VillagerEntity villagerEntity) {
 		if (NpcVariety.CONFIG.convertZombieVillagerSkinsToVillager) {
 			((SkinVariantManager) villagerEntity).setSkinIndex(getSkinIndex());
 		}

@@ -19,7 +19,7 @@ public class TraderClothingFeatureRenderer<T extends MerchantEntity, M extends E
 	public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
 		if (entity instanceof TraderClothingManager manager && !entity.isInvisible()) {
 
-			renderModel(this.getContextModel(), manager.getTraderClothes(), matrices, vertexConsumers, light, entity, 1.0f, 1.0f, 1.0f);
+			renderModel(this.getContextModel(), manager.getTraderClothes(), matrices, vertexConsumers, light, entity, -1);
 		}
 	}
 }

@@ -2,6 +2,7 @@ package io.github.overlordsiii.npcvariety.mixin.illager;
 
 import io.github.overlordsiii.npcvariety.api.IllagerClothingManager;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -19,22 +20,29 @@ import net.minecraft.world.World;
 @Mixin(VindicatorEntity.class)
 public abstract class VindicatorEntityMixin extends IllagerEntity implements IllagerClothingManager {
 
+	@Unique
 	private static final Identifier[] headFeatures = {
-		new Identifier("npcvariety:textures/entity/illager/head_features/empty.png"),
-		new Identifier("npcvariety:textures/entity/illager/head_features/eyepatch_l.png"),
-		new Identifier("npcvariety:textures/entity/illager/head_features/eyepatch_r.png"),
+		Identifier.of("npcvariety:textures/entity/illager/head_features/empty.png"),
+		Identifier.of("npcvariety:textures/entity/illager/head_features/eyepatch_l.png"),
+		Identifier.of("npcvariety:textures/entity/illager/head_features/eyepatch_r.png"),
 	};
 
-	private static final Identifier trousers = new Identifier("npcvariety:textures/entity/illager/trousers/vindicator.png");
-	private static final Identifier shirt = new Identifier("npcvariety:textures/entity/illager/shirt/undershirt.png");
-	private static final Identifier overclothes = new Identifier("npcvariety:textures/entity/illager/overclothes/jacket.png");
+	@Unique
+	private static final Identifier trousers = Identifier.of("npcvariety:textures/entity/illager/trousers/vindicator.png");
+	@Unique
+	private static final Identifier shirt = Identifier.of("npcvariety:textures/entity/illager/shirt/undershirt.png");
+	@Unique
+	private static final Identifier overclothes = Identifier.of("npcvariety:textures/entity/illager/overclothes/jacket.png");
 
+	@Unique
 	private static final Identifier[] shoes = {
-		new Identifier("npcvariety:textures/entity/illager/shoes/light.png"),
-		new Identifier("npcvariety:textures/entity/illager/shoes/dark.png"),
+		Identifier.of("npcvariety:textures/entity/illager/shoes/light.png"),
+		Identifier.of("npcvariety:textures/entity/illager/shoes/dark.png"),
 	};
 
+	@Unique
 	private static final TrackedData<Integer> headIndex = DataTracker.registerData(VindicatorEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	@Unique
 	private static final TrackedData<Integer> shoeIndex = DataTracker.registerData(VindicatorEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
 	protected VindicatorEntityMixin(EntityType<? extends IllagerEntity> entityType, World world) {

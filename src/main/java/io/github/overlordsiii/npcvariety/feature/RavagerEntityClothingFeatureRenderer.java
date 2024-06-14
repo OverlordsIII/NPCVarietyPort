@@ -17,7 +17,7 @@ public class RavagerEntityClothingFeatureRenderer<T extends RavagerEntity, M ext
 	@Override
 	public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
 		if (entity instanceof RavagerClothingManager) {
-			renderModel(this.getContextModel(), ((RavagerClothingManager)entity).getOverClothes(), matrices, vertexConsumers, light, entity, 1.0F, 1.0F, 1.0F);
+			renderModel(this.getContextModel(), ((RavagerClothingManager)entity).getOverClothes(), matrices, vertexConsumers, light, entity, -1);
 		}
 	}
 }

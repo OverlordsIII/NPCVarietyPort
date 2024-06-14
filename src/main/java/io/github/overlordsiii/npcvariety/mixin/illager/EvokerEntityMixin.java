@@ -2,6 +2,7 @@ package io.github.overlordsiii.npcvariety.mixin.illager;
 
 import io.github.overlordsiii.npcvariety.api.IllagerClothingManager;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -20,25 +21,32 @@ import net.minecraft.world.World;
 @Mixin(EvokerEntity.class)
 public abstract class EvokerEntityMixin extends SpellcastingIllagerEntity implements IllagerClothingManager {
 
+	@Unique
 	private static final Identifier[] headFeatures = {
-		new Identifier("npcvariety:textures/entity/illager/head_features/empty.png"),
-		new Identifier("npcvariety:textures/entity/illager/head_features/eyepatch_l.png"),
-		new Identifier("npcvariety:textures/entity/illager/head_features/eyepatch_r.png"),
+		Identifier.of("npcvariety:textures/entity/illager/head_features/empty.png"),
+		Identifier.of("npcvariety:textures/entity/illager/head_features/eyepatch_l.png"),
+		Identifier.of("npcvariety:textures/entity/illager/head_features/eyepatch_r.png"),
 	};
 
+	@Unique
 	private static final Identifier[] shoes = {
-		new Identifier("npcvariety:textures/entity/illager/shoes/light.png"),
-		new Identifier("npcvariety:textures/entity/illager/shoes/dark.png"),
+		Identifier.of("npcvariety:textures/entity/illager/shoes/light.png"),
+		Identifier.of("npcvariety:textures/entity/illager/shoes/dark.png"),
 	};
 
-	private static final Identifier overClothes = new Identifier("npcvariety:textures/entity/illager/overclothes/robe.png");
+	@Unique
+	private static final Identifier overClothes = Identifier.of("npcvariety:textures/entity/illager/overclothes/robe.png");
 
-	private static final Identifier shirt = new Identifier("npcvariety:textures/entity/illager/shirt/undershirt.png");
+	@Unique
+	private static final Identifier shirt = Identifier.of("npcvariety:textures/entity/illager/shirt/undershirt.png");
 
-	private static final Identifier trousers = new Identifier("npcvariety:textures/entity/illager/trousers/evoker.png");
+	@Unique
+	private static final Identifier trousers = Identifier.of("npcvariety:textures/entity/illager/trousers/evoker.png");
 
+	@Unique
 	private static final TrackedData<Integer> shoeIndex = DataTracker.registerData(EvokerEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
+	@Unique
 	private static final TrackedData<Integer> headIndex = DataTracker.registerData(EvokerEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
 	protected EvokerEntityMixin(EntityType<? extends SpellcastingIllagerEntity> entityType, World world) {
@@ -51,6 +59,7 @@ public abstract class EvokerEntityMixin extends SpellcastingIllagerEntity implem
 		builder.add(headIndex, getEyePatchIndex());
 	}
 
+	@Unique
 	private int getEyePatchIndex() {
 		if (this.random.nextFloat() <= 0.05F) {
 			return this.random.nextBoolean() ? 1 : 2;

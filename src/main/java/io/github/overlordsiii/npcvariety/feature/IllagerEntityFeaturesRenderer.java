@@ -18,11 +18,11 @@ public class IllagerEntityFeaturesRenderer<T extends IllagerEntity, M extends En
 	public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
 		if (entity instanceof IllagerClothingManager clothingManager) {
 
-			renderModel(this.getContextModel(), clothingManager.getHeadFeature(), matrices, vertexConsumers, light, entity, 1.0F, 1.0F, 1.0F);
-			renderModel(this.getContextModel(), clothingManager.getOverClothes(), matrices, vertexConsumers, light, entity, 1.0F, 1.0F, 1.0F);
-			renderModel(this.getContextModel(), clothingManager.getShirt(), matrices, vertexConsumers, light, entity, 1.0F, 1.0F, 1.0F);
-			renderModel(this.getContextModel(), clothingManager.getTrousers(), matrices, vertexConsumers, light, entity, 1.0F, 1.0F, 1.0F);
-			renderModel(this.getContextModel(), clothingManager.getShoes(), matrices, vertexConsumers, light, entity, 1.0F, 1.0F, 1.0F);
+			renderModel(this.getContextModel(), clothingManager.getHeadFeature(), matrices, vertexConsumers, light, entity, -1);
+			renderModel(this.getContextModel(), clothingManager.getOverClothes(), matrices, vertexConsumers, light, entity, -1);
+			renderModel(this.getContextModel(), clothingManager.getShirt(), matrices, vertexConsumers, light, entity, -1);
+			renderModel(this.getContextModel(), clothingManager.getTrousers(), matrices, vertexConsumers, light, entity, -1);
+			renderModel(this.getContextModel(), clothingManager.getShoes(), matrices, vertexConsumers, light, entity, -1);
 		}
 	}
 }

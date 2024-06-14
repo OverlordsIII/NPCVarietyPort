@@ -2,6 +2,7 @@ package io.github.overlordsiii.npcvariety.mixin.illager;
 
 import io.github.overlordsiii.npcvariety.api.IllagerClothingManager;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -19,16 +20,21 @@ import net.minecraft.world.World;
 @Mixin(PillagerEntity.class)
 public abstract class PillagerEntityMixin extends IllagerEntity implements IllagerClothingManager {
 
-	private static final Identifier trousers = new Identifier("npcvariety:textures/entity/illager/trousers/pillager.png");
-	private static final Identifier shirt = new Identifier("npcvariety:textures/entity/illager/shirt/pillager.png");
-	private static final Identifier shoes = new Identifier("npcvariety:textures/entity/illager/shoes/pillager.png");
+	@Unique
+	private static final Identifier trousers = Identifier.of("npcvariety:textures/entity/illager/trousers/pillager.png");
+	@Unique
+	private static final Identifier shirt = Identifier.of("npcvariety:textures/entity/illager/shirt/pillager.png");
+	@Unique
+	private static final Identifier shoes = Identifier.of("npcvariety:textures/entity/illager/shoes/pillager.png");
 
+	@Unique
 	private static final Identifier[] headFeatures = {
-		new Identifier("npcvariety:textures/entity/illager/head_features/empty.png"),
-		new Identifier("npcvariety:textures/entity/illager/head_features/eyepatch_l.png"),
-		new Identifier("npcvariety:textures/entity/illager/head_features/eyepatch_r.png"),
+		Identifier.of("npcvariety:textures/entity/illager/head_features/empty.png"),
+		Identifier.of("npcvariety:textures/entity/illager/head_features/eyepatch_l.png"),
+		Identifier.of("npcvariety:textures/entity/illager/head_features/eyepatch_r.png"),
 	};
 
+	@Unique
 	private static final TrackedData<Integer> headIndex = DataTracker.registerData(PillagerEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
 	protected PillagerEntityMixin(EntityType<? extends IllagerEntity> entityType, World world) {

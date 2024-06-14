@@ -4,6 +4,7 @@ import io.github.overlordsiii.npcvariety.api.EyeVariantManager;
 import io.github.overlordsiii.npcvariety.api.SkinVariantManager;
 import io.github.overlordsiii.npcvariety.api.TextureIdList;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.data.DataTracker;
@@ -19,11 +20,15 @@ import net.minecraft.world.World;
 @Mixin(IllagerEntity.class)
 public abstract class IllagerEntityMixin extends RaiderEntity implements SkinVariantManager, EyeVariantManager {
 
+	@Unique
 	private static final TextureIdList SKIN_TEXTURE_ID_LIST = new TextureIdList("textures/entity/illager/", 7, "skin");;
 
+	@Unique
 	private static final TextureIdList EYE_TEXTURE_ID_LIST = new TextureIdList("textures/entity/illager/eyes", 3, "eye");
 
+	@Unique
 	private static final TrackedData<Integer> SKIN_INDEX = DataTracker.registerData(IllagerEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	@Unique
 	private static final TrackedData<Integer> EYE_INDEX = DataTracker.registerData(IllagerEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
 	protected IllagerEntityMixin(EntityType<? extends RaiderEntity> entityType, World world) {
@@ -67,7 +72,7 @@ public abstract class IllagerEntityMixin extends RaiderEntity implements SkinVar
 	public Identifier getEyeVariant() {
 
 		if (getEyeIndex() == 4) {
-			return new Identifier("npcvariety:textures/entity/illager/eyes/eye4.png");
+			return Identifier.of("npcvariety:textures/entity/illager/eyes/eye4.png");
 		}
 
 		return EYE_TEXTURE_ID_LIST.get(getEyeIndex());
