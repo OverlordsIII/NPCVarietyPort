@@ -4,6 +4,7 @@ import io.github.overlordsiii.npcvariety.api.EyeVariantManager;
 import io.github.overlordsiii.npcvariety.api.SkinVariantManager;
 import io.github.overlordsiii.npcvariety.api.TextureIdList;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -38,11 +39,12 @@ public abstract class MerchantEntityMixin extends PassiveEntity implements SkinV
 	private static final TrackedData<Integer> EYE_INDEX = DataTracker.registerData(MerchantEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
 	@Inject(method = "initDataTracker", at = @At("TAIL"))
-	private void setIndexes(CallbackInfo ci) {
-		this.dataTracker.startTracking(SKIN_INDEX, this.random.nextInt(8));
-		this.dataTracker.startTracking(EYE_INDEX, getRandomEyeIndex());
+	private void setIndexes(DataTracker.Builder builder, CallbackInfo ci) {
+		builder.add(SKIN_INDEX, this.random.nextInt(8));
+		builder.add(EYE_INDEX, getRandomEyeIndex());
 	}
 
+	@Unique
 	private int getRandomEyeIndex() {
 		if (this.random.nextBoolean()) {
 			return 3;

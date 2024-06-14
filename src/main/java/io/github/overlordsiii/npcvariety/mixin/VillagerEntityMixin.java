@@ -36,7 +36,7 @@ public abstract class VillagerEntityMixin extends MerchantEntity {
 		super(entityType, world);
 	}
 
-	@Inject(method = "createChild", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/VillagerEntity;initialize(Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/world/LocalDifficulty;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/EntityData;Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/entity/EntityData;"), locals = LocalCapture.CAPTURE_FAILHARD)
+	@Inject(method = "createChild", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/VillagerEntity;initialize(Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/world/LocalDifficulty;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/EntityData;)Lnet/minecraft/entity/EntityData;"), locals = LocalCapture.CAPTURE_FAILHARD)
 	private void inheritTraits(ServerWorld serverWorld, PassiveEntity passiveEntity, CallbackInfoReturnable<VillagerEntity> cir, VillagerType villagerType3, VillagerEntity villagerEntity) {
 		if (passiveEntity instanceof VillagerEntity dad && NpcVariety.CONFIG.inheritTraits) {
 			boolean dadInheritSkin = this.random.nextBoolean();
@@ -56,7 +56,7 @@ public abstract class VillagerEntityMixin extends MerchantEntity {
 
 
 	@Inject(method = "initialize", at = @At("TAIL"))
-	private void resetSkinIndexBasedOnBiome(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, NbtCompound entityTag, CallbackInfoReturnable<EntityData> cir) {
+	private void resetSkinIndexBasedOnBiome(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, CallbackInfoReturnable<EntityData> cir) {
 		if (spawnReason == SpawnReason.STRUCTURE && NpcVariety.CONFIG.naturalVariation) {
 			BiomeSpawnRate rate = getRateFromType(this.getVillagerData());
 

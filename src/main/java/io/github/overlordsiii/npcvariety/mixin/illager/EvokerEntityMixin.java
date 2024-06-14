@@ -46,9 +46,9 @@ public abstract class EvokerEntityMixin extends SpellcastingIllagerEntity implem
 	}
 
 	@Inject(method = "initDataTracker", at = @At("HEAD"))
-	protected void initDataTracker(CallbackInfo ci) {
-		this.dataTracker.startTracking(shoeIndex, this.random.nextInt(2));
-		this.dataTracker.startTracking(headIndex, getEyePatchIndex());
+	protected void initDataTracker(DataTracker.Builder builder, CallbackInfo ci) {
+		builder.add(shoeIndex, this.random.nextInt(2));
+		builder.add(headIndex, getEyePatchIndex());
 	}
 
 	private int getEyePatchIndex() {

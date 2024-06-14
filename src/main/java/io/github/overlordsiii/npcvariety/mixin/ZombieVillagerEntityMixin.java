@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 
 
 @Mixin(ZombieVillagerEntity.class)
-public class ZombieVillagerEntityMixin extends ZombieEntity implements SkinVariantManager {
+public abstract class ZombieVillagerEntityMixin extends ZombieEntity implements SkinVariantManager {
 
 	@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 	private static final TextureIdList SKIN_TEXTURE_ID_LIST = new TextureIdList("textures/entity/zombie_villager/", 10, "skin");
@@ -41,8 +41,8 @@ public class ZombieVillagerEntityMixin extends ZombieEntity implements SkinVaria
 	}
 
 	@Inject(method = "initDataTracker", at = @At("TAIL"))
-	private void initIndex(CallbackInfo ci) {
-		this.dataTracker.startTracking(SKIN_INDEX, this.random.nextInt(8));
+	private void initIndex(DataTracker.Builder builder, CallbackInfo ci) {
+		builder.add(SKIN_INDEX, this.random.nextInt(8));
 	}
 
 	@Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))

@@ -36,8 +36,8 @@ public abstract class PillagerEntityMixin extends IllagerEntity implements Illag
 	}
 
 	@Inject(method = "initDataTracker", at = @At("HEAD"))
-	private void addHeadIndex(CallbackInfo ci) {
-		this.dataTracker.startTracking(headIndex, getEyePatchIndex());
+	private void addHeadIndex(DataTracker.Builder builder, CallbackInfo ci) {
+		builder.add(headIndex, getEyePatchIndex());
 	}
 
 	private int getEyePatchIndex() {

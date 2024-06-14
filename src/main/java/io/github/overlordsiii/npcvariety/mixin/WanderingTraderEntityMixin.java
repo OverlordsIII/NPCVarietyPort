@@ -31,9 +31,9 @@ public abstract class WanderingTraderEntityMixin extends MerchantEntity implemen
 	}
 
 	@Override
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(robeIndex, this.random.nextInt(2));
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(robeIndex, this.random.nextInt(2));
 	}
 
 	@Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))

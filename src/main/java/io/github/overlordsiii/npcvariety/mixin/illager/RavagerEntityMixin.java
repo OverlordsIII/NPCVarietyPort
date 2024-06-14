@@ -51,10 +51,10 @@ public abstract class RavagerEntityMixin extends RaiderEntity implements SkinVar
 	}
 
 	@Override
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(skinIndex, this.random.nextInt(8));
-		this.dataTracker.startTracking(eyeIndex, this.random.nextInt(5));
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(skinIndex, this.random.nextInt(8));
+		builder.add(eyeIndex, this.random.nextInt(5));
 	}
 
 	@Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))

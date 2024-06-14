@@ -42,10 +42,10 @@ public abstract class VindicatorEntityMixin extends IllagerEntity implements Ill
 	}
 
 	@Override
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(headIndex, getEyePatchIndex());
-		this.dataTracker.startTracking(shoeIndex, this.random.nextInt(2));
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(headIndex, getEyePatchIndex());
+		builder.add(shoeIndex, this.random.nextInt(2));
 	}
 
 	@Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))

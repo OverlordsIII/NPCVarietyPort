@@ -31,13 +31,11 @@ public abstract class IllagerEntityMixin extends RaiderEntity implements SkinVar
 	}
 
 	@Override
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(EYE_INDEX, getRandomEyeIndex());
-		this.dataTracker.startTracking(SKIN_INDEX, this.random.nextInt(8));
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(EYE_INDEX, this.getRandomEyeIndex());
+		builder.add(SKIN_INDEX, this.random.nextInt(8));
 	}
-
-
 
 	@Override
 	public void readCustomDataFromNbt(NbtCompound tag) {
